@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aqua;
+        }
+
+        .container{
+            background-color: azure;
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+
+        .passwordBox{
+            width: 100%;
+            height: 3rem;
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid aqua;
+
+        }
+
+        .passwordBox input{
+            font-size: 2rem;
+            border: none;
+            outline: none;
+            
+        }
+
+        .passwordBox button{
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            background-color: gold;
+            padding:  0 1rem 0 1rem;
+        }
+
+        .btn{
+            margin: 1rem 0;
+        }
+
+        .btn button{
+            padding: 0.5rem;
+            font-size: 1rem;
+            background-color: gold;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Genrante <span>Random Password</span></h1>
+        <div class="passwordBox">
+            <input id="passwordInput" type="text">
+            <button>copy</button>
+        </div>
+        <div class="btn">
+            <button id="passGenBtn">Gentrate Password</button>
+        </div>
+    </div>
+
+    <script>
+        const passwordInput = document.querySelector("#passwordInput");
+        const passGenBtn = document.querySelector("#passGenBtn")
+        const lenght = 12;
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerCase = upperCase.toLowerCase();
+        const number = "0123456789";
+        const symbol = "!@#$%^&*()-+*/=";
+
+
+        const allChar = upperCase + lowerCase + number + symbol;
+
+        passGenBtn.addEventListener("click", () => {
+            let Password = "";
+            Password = Password + upperCase[Math.floor(Math.random() * upperCase.length)];
+            Password = Password + lowerCase[Math.floor(Math.random() * lowerCase.length)];
+            Password = Password + number[Math.floor(Math.random() * number.length)];
+            Password = Password + symbol[Math.floor(Math.random() * symbol.length)];
+
+            while(lenght > Password.length){
+                Password = Password + allChar[Math.floor(Math.random() * allChar.length)];
+            }
+
+            passwordInput.value = Password;
+        })
+    </script>
+</body>
+</html>
